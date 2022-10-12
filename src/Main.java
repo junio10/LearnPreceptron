@@ -15,8 +15,9 @@ public class Main {
     public static void Learning(List<Dados> dados, double weight[]){ 
            int isVerificar = 2;
            int i = 0, y = 0;
-           while(isVerificar > 0){ 
+           while(isVerificar != 0){ 
                i = 0;
+               isVerificar = 2;
                while(dados.size() > i){
                     y = CalculateY(weight, dados.get(i).getDados());
                     if(y == dados.get(i).getResultadoEsperado()){
@@ -32,9 +33,12 @@ public class Main {
     }
     public static void BalanceWeights(double weight[], int dados[], int resultadoEsperado, int resultadoDaConta){
            double neta = 0.4;
-           weight[0] = weight[0] + neta*(1)*(resultadoEsperado - resultadoDaConta);
+          
             for(int i = 0; i < 9; i++){
-                weight[i+1] = weight[i+1] + neta*(dados[i])*(resultadoEsperado - resultadoDaConta);
+                if(i==1)
+                   weight[0] = weight[0] + (neta*(1)*(resultadoEsperado - resultadoDaConta));
+                
+                weight[i] = weight[i] + (neta*(dados[i])*(resultadoEsperado - resultadoDaConta));
             }
     }
     public static int CalculateY(double weight[],int dados[]){
@@ -86,9 +90,25 @@ public class Main {
         dados.add(d2);
       
         //o primeiro valor aleatorio é o limiar, valores aleatório
-        double weight[]= {-0,5,0.1,0.4,-0.2,0.9,-0.7,0.6,0.3,-0.5,0.8};
+        double weight[]= {-0.5,0.8,0.1,0.4,-0.2,0.9,-0.7,0.6,0.3,-0.8};
+        System.out.println("Pesos antes do treinamento:");
+        for(int i = 0; i < 10; i++){
+            System.out.print(weight[i] + " ");
+        }
         
+        //Treinando a rede
         Learning(dados, weight);
+        System.out.println(" ");
+        System.out.println("Pesos depois do treinamento:");
+        for(int i = 0; i < 10; i++){
+            System.out.print(weight[i] + " ");
+        }
+        //1-Teste
+        System.out.println(" ");
+        System.out.println("-Passando um T como entrada. Se ele conheceR ele responde com a letra que foi passada:");
+        Teste(teste1,weight);
+        //2-Teste
+        System.out.println("-Passando uma H como entrada:");
         Teste(teste2,weight);
         
      
