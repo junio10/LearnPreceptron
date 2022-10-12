@@ -35,9 +35,9 @@ public class Main {
            double neta = 0.4;
           
             for(int i = 0; i < 9; i++){
-                if(i==1)
+                if(i==0){
                    weight[0] = weight[0] + (neta*(1)*(resultadoEsperado - resultadoDaConta));
-                
+                }
                 weight[i] = weight[i] + (neta*(dados[i])*(resultadoEsperado - resultadoDaConta));
             }
     }
@@ -58,10 +58,12 @@ public class Main {
     }
     public static void Teste(int dados[], double weight[]){
         int y = CalculateY(weight, dados);
+        //T, O resultado esperado é 1
         if(y == 1){
-            System.out.println("T");
+            System.out.println("O T foi reconhecido");
         }else{
-            System.out.println("H");
+        //H, O resultado esperado é -1
+            System.out.println("O H foi reconhecido");
         }
     }
     public static void main(String[] args) {
