@@ -35,10 +35,14 @@ public class Main {
            double neta = 0.4;
           
             for(int i = 0; i < 9; i++){
-                if(i==0){
+                if(i==0)
+                {
                    weight[0] = weight[0] + (neta*(1)*(resultadoEsperado - resultadoDaConta));
+                }else
+                {
+                   weight[i] = weight[i] + (neta*(dados[i])*(resultadoEsperado - resultadoDaConta));
                 }
-                weight[i] = weight[i] + (neta*(dados[i])*(resultadoEsperado - resultadoDaConta));
+                
             }
     }
     public static int CalculateY(double weight[],int dados[]){
